@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>GoCare4U | Home Care Services Melbourne</title>
+<meta name="description" content="GoCare4U provides professional home care services - support at home in Melbourne. Your home, our priority. Contact us for personalized care.">
+<meta name="keywords" content="NDIS provider Melbourne, Disability Support, Home Care Services, Support at home, Aged Care Australia">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#2D5A27",
+                        secondary: "#81B622",
+                        accent: "#000000",
+                        "background-light": "#FDFCF8",
+                        "background-dark": "#121212",
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        body: ["Outfit", "sans-serif"],
+                    },
+                    borderRadius: { DEFAULT: "12px" },
+                },
+            },
+        };
+
+        function toggleDarkMode() { document.documentElement.classList.toggle('dark'); }
+        
+        function toggleService(id) {
+            const content = document.getElementById('content-' + id);
+            const icon = document.getElementById('icon-' + id);
+            const allContents = document.querySelectorAll('.service-content');
+            const allIcons = document.querySelectorAll('.expand-icon');
+            const isHidden = content.classList.contains('hidden');
+            
+            allContents.forEach(c => c.classList.add('hidden'));
+            allIcons.forEach(i => i.style.transform = 'rotate(0deg)');
+            
+            if (isHidden) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+                content.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48; }
+        .hero-gradient { background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%); }
+        .service-toggle-bar { @apply flex items-center justify-between w-full p-6 md:p-10 bg-white dark:bg-zinc-900 border-4 border-accent dark:border-white text-left transition-all hover:bg-zinc-50 dark:hover:bg-zinc-800 mb-4 rounded-2xl cursor-pointer; }
+        .service-content { @apply bg-white dark:bg-zinc-900 border-x-4 border-b-4 border-accent dark:border-white p-6 md:p-12 -mt-6 mb-8 rounded-b-2xl overflow-hidden; }
+        .accessibility-text-xl { @apply text-lg md:text-2xl leading-relaxed; }
+        .accessibility-text-lg { @apply text-base md:text-xl leading-relaxed; }
+        .service-image { @apply w-full lg:w-[400px] aspect-square object-cover rounded-2xl border-4 border-accent dark:border-white shadow-xl transition-all duration-500 hover:brightness-110 mb-6 lg:mb-0; }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden; width: 200px; background-color: #2D5A27; color: #fff;
+            text-align: center; border-radius: 8px; padding: 12px; position: absolute;
+            z-index: 10; bottom: 150%; left: 50%; margin-left: -100px; opacity: 0;
+            transition: opacity 0.3s; font-size: 14px; box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+        }
+        .tooltip:hover .tooltiptext { visibility: visible; opacity: 1; }
+    </style>
+</head>
+<body class="font-body bg-background-light dark:bg-background-dark text-accent dark:text-white transition-colors duration-300">
+
+
+<!--<div class="chat-fab-container group">
+<div class="chat-label">在线咨询</div>
+<a aria-label="在线聊天" class="w-20 h-20 bg-primary hover:bg-secondary text-white rounded-full flex items-center justify-center shadow-[0_10px_40px_rgba(45,90,39,0.4)] transition-all duration-300 hover:scale-110 border-4 border-white dark:border-zinc-800" href="https://wa.me/611800462273" target="_blank">
+<span class="material-symbols-outlined text-5xl">chat_bubble</span>
+</a>
+</div> -->
+
+
+<header class="sticky top-0 z-50 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md border-b-4 border-accent dark:border-white py-4 px-4 md:px-12 shadow-md">
+    <nav class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex flex-col cursor-default group">
+            <div class="flex items-baseline gap-1">
+                <span class="text-2xl md:text-4xl font-black tracking-tight text-accent dark:text-white group-hover:text-primary transition-colors">gocare4u</span>
+                <span class="text-secondary material-symbols-outlined text-3xl md:text-5xl mb-[-8px] md:mb-[-12px]">eco</span>
+            </div>
+            <span class="text-primary dark:text-secondary font-bold tracking-wide text-[10px] md:text-xl -mt-1 uppercase">Home Care Experts</span>
+        </div>
+        <div class="flex items-center gap-4 md:gap-8">
+            
+            <a class="text-lg md:text-2xl font-black text-accent dark:text-white hover:text-primary transition-colors underline decoration-4 underline-offset-8" href="https://www.gocare4u.com.au/chinese_version" >中文服务 ↗</a>
+
+<!-- <div style="text-align: center; margin-top: 20px;">
+  <a href="https://www.gocare4u.com.au/home_chinese" 
+     target="_blank" 
+     style="background-color: #2D5A27; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-family: sans-serif; font-weight: bold; display: inline-block;">
+     中文服务 (Chinese Services)
+  </a>
+</div> -->
+
+
+
+<!-- <a href="https://www.gocare4u.com.au/home_chinese" 
+target="_blank"
+   rel="noopener" 
+   style="color: black; text-decoration: none; font-weight: bold;">
+   中文服务 ↗
+</a>-->
+
+            <button class="p-2 md:p-3 bg-accent dark:bg-white text-white dark:text-accent rounded-full flex items-center justify-center transition-colors" onclick="toggleDarkMode()">
+                <span class="material-symbols-outlined text-xl md:text-3xl">contrast</span>
+            </button>
+        </div>
+    </nav>
+</header>
+
+<section class="relative min-h-[500px] lg:h-[850px] flex items-center overflow-hidden border-b-8 border-primary bg-white">
+    <img alt="gocare4u" class="absolute inset-0 w-full h-full object-cover object-center" src="https://thumbs2.imgbox.com/fc/2b/MaWmJqT4_t.jpg"/> 
+    <div class="absolute inset-0 hero-gradient"></div>
+    <div class="relative max-w-7xl mx-auto px-6 md:px-12 w-full text-white">
+        <div class="max-w-3xl space-y-6 md:space-y-10">
+            <div class="flex flex-wrap items-center gap-4">
+                <div class="inline-block bg-secondary text-accent px-4 md:px-8 py-2 md:py-3 rounded-lg text-sm md:text-2xl font-black tracking-widest uppercase shadow-2xl">Premium Home Care</div>
+                <div class="bg-white/20 backdrop-blur-md text-white border-2 border-white/30 px-3 md:px-6 py-2 md:py-3 rounded-lg text-xs md:text-xl font-bold flex items-center gap-2 shadow-xl">
+                    <span class="material-symbols-outlined text-secondary">location_on</span> Melbourne Based
+                </div>
+            </div>
+            <h1 class="text-5xl md:text-8xl lg:text-9xl font-display font-black leading-tight drop-shadow-lg">
+                Your home, <br/><span class="text-secondary italic">our priority</span>
+            </h1>
+            <p class="text-lg md:text-3xl font-medium bg-black/10 backdrop-blur-sm p-4 md:p-6 rounded-2xl border-l-8 border-secondary">
+                Empowering seniors to live independently in the place they love most—home. Our expert team provides compassionate support funded by the government.
+            </p>
+        </div>
+    </div>
+</section>
+
+<main class="max-w-7xl mx-auto py-24 px-6">
+    <div class="text-center mb-20 space-y-6 max-w-4xl mx-auto">
+        <h2 class="text-5xl md:text-7xl font-display font-black text-accent dark:text-white tracking-tight">Support Tailored for You</h2>
+        <p class="accessibility-text-xl text-zinc-700 dark:text-zinc-300 font-medium">High-quality, professional care solutions delivered with genuine warmth and companionship.</p>
+    </div>
+
+    <div class="space-y-6 max-w-6xl mx-auto">
+
+<div class="service-item">
+<button class="service-toggle-bar" onclick="toggleService('consultation')">
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-5xl text-primary dark:text-secondary">support_agent</span>
+<span class="text-l md:text-4xl font-black uppercase tracking-tight">Consultation</span>
+</div>
+<span class="material-symbols-outlined text-5xl transition-transform duration-300 expand-icon" id="icon-consultation">expand_more</span>
+</button>
+<div class="service-content hidden" id="content-consultation">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div>
+ <img alt="Professional consultant discussing home care options with an elderly individual in a warm, inviting setting" class="service-image" src="https://thumbs2.imgbox.com/3a/65/nBdtrD8s_t.png"/>
+</div> 
+
+<!-- <img alt="Professional consultant discussing home care options with an elderly individual in a warm, inviting setting" class="service-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0r2g3172_Vt7ufUVedHXEp4xUxAA2mYC1TvcD5NzAsqyoDH8MDRXZ1pmIgA_oXLco5mADaLJbYFhiMO8GLTYCEzjDXKwvZxeqk3UsRDcWPXy_g6qY6FFTaDu2Z0KBrTdxZXkDyJtgk1mlldOlKM3xZWLOYpms9jjK_xUZvXIGW7F_NrYwSEbTexXWguHuUoyxGjjrj5RFuLKgp-Nf-zuIbKeB0Ff5ApVZnKNCEBKOUDylhOtUULcPmpuHIKQWtH-79i8DojKqbLw"/>
+</div>  -->
+
+
+<div class="space-y-8">
+<h3 class="text-4xl font-black text-primary dark:text-secondary">Expert Guidance for Your Care Journey</h3>
+<p class="accessibility-text-xl font-medium">Helping you navigate the 'Support at Home' program and simplify your application for government-funded services.</p>
+<ul class="space-y-4">
+<li class="flex items-start gap-4 accessibility-text-lg font-bold">
+<span class="material-symbols-outlined text-secondary text-3xl">check_circle</span>
+                                    Expert 'Support at Home' program guidance
+                                </li>
+<li class="flex items-start gap-4 accessibility-text-lg font-bold">
+<span class="material-symbols-outlined text-secondary text-3xl">check_circle</span>
+                                    Assistance with government care applications
+                                </li>
+<li class="flex items-start gap-4 accessibility-text-lg font-bold">
+<span class="material-symbols-outlined text-secondary text-3xl">check_circle</span>
+                                    Personalized service eligibility review
+                                </li>
+<li class="flex items-start gap-4 accessibility-text-lg font-bold">
+<span class="material-symbols-outlined text-secondary text-3xl">check_circle</span>
+                                    Step-by-step navigation of the care journey
+                                </li>
+<li class="flex items-start gap-4 accessibility-text-lg font-bold">
+<span class="material-symbols-outlined text-secondary text-3xl">check_circle</span>
+                                    Connecting you with tailored local support
+                                </li>
+</ul>
+<button class="w-full bg-accent dark:bg-white text-white dark:text-accent text-2xl font-black py-6 rounded-2xl hover:bg-primary transition-colors flex items-center justify-center gap-4 shadow-lg uppercase" onclick="window.location.href='#contact-section'">
+                                Book Now <span class="material-symbols-outlined text-3xl">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+
+        
+        <div class="service-item">
+            <button class="service-toggle-bar" onclick="toggleService('domestic')">
+                <div class="flex items-center gap-6">
+                    <span class="material-symbols-outlined text-5xl text-primary dark:text-secondary">cleaning_services</span>
+                    <span class="text-xl md:text-4xl font-black uppercase tracking-tight">Domestic Assistance</span>
+                </div>
+                <span class="material-symbols-outlined text-5xl transition-transform duration-300 expand-icon" id="icon-domestic">expand_more</span>
+            </button>
+            <div class="service-content hidden" id="content-domestic">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+                  <!--  <img alt="Domestic help" class="service-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN0OUlMY3YfY4-mh6fg5LwZaViJpOaYcZmUgtxAjQtScLdwDYaJZ43nI32Z5-EGDHUi13n1lfAcVlAWQiozANHiyp_V6TXo6WMSL8xSoOjWMTGxVrPDpOUCAz8-Z2PcX8CLBIaJ715WdEMe1RtXDTvFHpn_Eb7U7oxnKgV2OXnLOI42iKBOf8RtbyH1LfLQcb-cppWW9ljdbC7f7uvMhlbVo0FJT-HQpV7xQA0h93oRiO3t74Vkrr1BTBslhV-9qYWhkaD7tfnD8Y"/> -->
+
+<img alt="Domestic help" class="service-image" src="https://thumbs2.imgbox.com/1a/3e/0DHe7UaA_t.jpg"/> 
+
+                    <div class="space-y-8">
+                        <h3 class="text-4xl font-black text-primary dark:text-secondary">Keeping Your Home Sparkling</h3>
+                        <p class="accessibility-text-xl font-medium">Professional help in the heart of your home, ensuring your living spaces remain bright, clean, and comfortable.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> General house cleaning and dusting</li>
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Laundry and ironing assistance</li>
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Making beds and changing linen</li>
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Kitchen cleaning and dishwashing</li>
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Light organization of living areas</li>
+                        </ul>
+                        <button class="w-full bg-accent dark:bg-white text-white dark:text-accent text-2xl font-black py-6 rounded-2xl hover:bg-primary transition-colors flex items-center justify-center gap-4 shadow-lg uppercase" onclick="window.location.href='#contact-section'">
+                            Get Support Now <span class="material-symbols-outlined text-3xl">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-item">
+            <button class="service-toggle-bar" onclick="toggleService('personal')">
+                <div class="flex items-center gap-6">
+                    <span class="material-symbols-outlined text-5xl text-primary dark:text-secondary">favorite</span>
+                    <span class="text-xl md:text-4xl font-black uppercase tracking-tight">Personal Care</span>
+                </div>
+                <span class="material-symbols-outlined text-5xl transition-transform duration-300 expand-icon" id="icon-personal">expand_more</span>
+            </button>
+            <div class="service-content hidden" id="content-personal">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+                <!--    <img alt="Personal care" class="service-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcKVODOQItI4EwERWUrQSg0NvAqLq2ISuw-iTHUHq0HYtsBmrMoc_pj4o4kQj_I6imRrJ1mgyV5eQlTUAnV36xJbQY3eUw2WQpryNopQFJ3b4X2MjayaHiVT0OXQJ52v63YcMojKSfh5fi-fWGTpvT8-P9Td9swtNGqOCbEtYxgGKGXrQs8mARf9G0LB56YGvd0t7CZQsvDoll20j5LDyB1bLRvtpUI5Wdpq85JqFuEzhnD6KqkW69U73p_H4g0GgyCOw7q_hNsIU"/> -->
+
+<img alt="Personal care" class="service-image" src="https://thumbs2.imgbox.com/d3/a2/48JF652H_t.jpg"/>
+
+                    <div class="space-y-8">
+                        <h3 class="text-4xl font-black text-primary dark:text-secondary">Respectful Daily Support</h3>
+                        <p class="accessibility-text-xl font-medium">Dignified assistance that focuses on your comfort and personal well-being.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Bathing, showering, and grooming support</li>
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Assistance with dressing and undressing</li>
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Toileting and continence management</li>
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Help with mobility and transfers</li>
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Medication reminders and monitoring</li>
+                        </ul>
+                        <button class="w-full bg-accent dark:bg-white text-white dark:text-accent text-2xl font-black py-6 rounded-2xl hover:bg-primary transition-colors flex items-center justify-center gap-4 shadow-lg uppercase" onclick="window.location.href='#contact-section'">
+                            Get Support Now <span class="material-symbols-outlined text-3xl">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-item">
+            <button class="service-toggle-bar" onclick="toggleService('respite')">
+                <div class="flex items-center gap-6">
+                    <span class="material-symbols-outlined text-5xl text-primary dark:text-secondary">hotel_class</span>
+                    <span class="text-xl md:text-4xl font-black uppercase tracking-tight">Respite Care</span>
+                </div>
+                <span class="material-symbols-outlined text-5xl transition-transform duration-300 expand-icon" id="icon-respite">expand_more</span>
+            </button>
+            <div class="service-content hidden" id="content-respite">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <img alt="Respite care" class="service-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3Kp9Z7SdDBmYukMfCLpgPgRbJSCcBEIABjw4vVK2Eo6khbXXRpB_bInJUNoKe4ANcthEdQVqwn-qi5RKGK9tTEcNqXkDHf3tJFuLWdix8qCuAKlX5HzSR1K_93ptdEj65f_AnTaghPVNExQ8mu05cmYNJKJKebb0DSehFNHVu_O9iuP-CVqPH8QfKH6BXd-xAuZ_S8yAqaqHrHmSd6geJGrYxvWFPwuKZlMYS9xS73oYYg3xLNn54_PSQ6noz9sOFa7M19kiNBzU"/>
+                    <div class="space-y-8">
+                        <h3 class="text-4xl font-black text-primary dark:text-secondary">Meaningful Companionship</h3>
+                        <p class="accessibility-text-xl font-medium">Safe respite providing joy while primary carers take a break.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Daytime supervision and companionship</li>
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Engaging in hobbies and shared activities</li>
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Temporary relief for family caregivers</li>
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Overnight care for added peace of mind</li>
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Social interaction in a safe environment</li>
+                        </ul>
+                        <button class="w-full bg-accent dark:bg-white text-white dark:text-accent text-2xl font-black py-6 rounded-2xl hover:bg-primary transition-colors flex items-center justify-center gap-4 shadow-lg uppercase" onclick="window.location.href='#contact-section'">
+                            Get Support Now <span class="material-symbols-outlined text-3xl">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-item">
+            <button class="service-toggle-bar" onclick="toggleService('social')">
+                <div class="flex items-center gap-6">
+                    <span class="material-symbols-outlined text-5xl text-primary dark:text-secondary">groups</span>
+                    <span class="text-xl md:text-4xl font-black uppercase tracking-tight">Social Support</span>
+                </div>
+                <span class="material-symbols-outlined text-5xl transition-transform duration-300 expand-icon" id="icon-social">expand_more</span>
+            </button>
+            <div class="service-content hidden" id="content-social">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+                  <!--  <img alt="Social support" class="service-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSXDyrbzJQMZIdUFqbynzRbb0kR6f_EWS9yZTYryin5AT9zOwr-ch7jfqiN3u_YjEMO_K9VC4i2xH1WUHHmPuKMKqHN56smzUya-qEQlaiDiKQK1t-FZt5avraZanrfaY2cS4B9ZK3cdBHXdoDP8uw4mrVzKLyEwDj06TGLFKHrMbqXq6bXULxke73XJXA4xWJD_R18vDXYQBp0cuT43z2Mp0FpUHa_hubNSvCXzPYQkPppp6dSks8aR3xXWqVGwqE9M7IECHM6eQ"/> -->
+
+  <img alt="Social support" class="service-image" src="https://thumbs2.imgbox.com/27/39/yJmxhjUB_t.jpg"/> 
+
+                    <div class="space-y-8">
+                        <h3 class="text-4xl font-black text-primary dark:text-secondary">Stay Connected & Active</h3>
+                        <p class="accessibility-text-xl font-medium">Maintaining social ties and physical activity with a friendly professional.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Accompaniment to local social events</li>
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Visits to friends, family, or cafes</li>
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Support with telephone and video calls</li>
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Accompanied walks and light exercise</li>
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Assistance with library or community visits</li>
+                        </ul>
+                        <button class="w-full bg-accent dark:bg-white text-white dark:text-accent text-2xl font-black py-6 rounded-2xl hover:bg-primary transition-colors flex items-center justify-center gap-4 shadow-lg uppercase" onclick="window.location.href='#contact-section'">
+                            Get Support Now <span class="material-symbols-outlined text-3xl">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-item">
+            <button class="service-toggle-bar" onclick="toggleService('transport')">
+                <div class="flex items-center gap-6">
+                    <span class="material-symbols-outlined text-5xl text-primary dark:text-secondary">local_shipping</span>
+                    <span class="text-xl md:text-4xl font-black uppercase tracking-tight">Transport/ 
+                     Shopping assistance</span>
+                </div>
+                <span class="material-symbols-outlined text-5xl transition-transform duration-300 expand-icon" id="icon-transport">expand_more</span>
+            </button>
+            <div class="service-content hidden" id="content-transport">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+                    <!-- <img alt="Transport help" class="service-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvwPBklHvkh0RXjFanLBFXcuQ9Z3WI-7MgXJqtjjD48UbVtSqDTte3XttIUv3a6KGNRrhiStThKdBX0MpijJGCxb3TJvSsAbwLbE8gp5v4ctMSPkM9mqYba3v1YErdoIZCu4EQeubacJ-WsXr0RQZPaZog99Hqj4F6sNL-U2-qD3UBP492XWmf_Hjf63ARkobX3pnsCy8XOBh8KvUJleCFPHhueQN8OIfLYvaZwSoW3-P-dRAq0getf0XL_hWsUyngzj9EDNK8ShI"/> -->
+
+<img alt="Transport help" class="service-image" src="https://thumbs2.imgbox.com/73/47/zrAAUEpT_t.jpg"/>
+
+
+                    <div class="space-y-8">
+                        <h3 class="text-4xl font-black text-primary dark:text-secondary">Getting You There Safely</h3>
+                        <p class="accessibility-text-xl font-medium">Reliable transportation in modern vehicles for ease and dignity.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Transport to medical and dental appointments</li>
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Grocery shopping and errand assistance</li>
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Safe drop-off and pick-up services</li>
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Assistance with carrying and putting away bags</li>
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Travel support for banking or bill payments</li>
+                        </ul>
+                        <button class="w-full bg-accent dark:bg-white text-white dark:text-accent text-2xl font-black py-6 rounded-2xl hover:bg-primary transition-colors flex items-center justify-center gap-4 shadow-lg uppercase" onclick="window.location.href='#contact-section'">
+                            Get Support Now <span class="material-symbols-outlined text-3xl">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-item">
+            <button class="service-toggle-bar" onclick="toggleService('gardening')">
+                <div class="flex items-center gap-6">
+                    <span class="material-symbols-outlined text-5xl text-primary dark:text-secondary">yard</span>
+                    <span class="text-xl md:text-4xl font-black uppercase tracking-tight">Gardening</span>
+                </div>
+                <span class="material-symbols-outlined text-5xl transition-transform duration-300 expand-icon" id="icon-gardening">expand_more</span>
+            </button>
+            <div class="service-content hidden" id="content-gardening">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <img alt="Gardening help" class="service-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2KKR8uJ3Ywr-NoqmA0gufSI2E7Nl1DZ-WwzX_4hvoWsHoawTaKh0nPW7M6X_kqCH3rwFCScehKVDGaY8by9OBiddh9-16JtIRB2UcSNkZIRNv1B4K9qtlyzGGPP3Af3CLNpqnJ_EUM7c1oMNN418CV8AYrIHf8J6mLFHmlBRgLXhKhXqae_5iYgPRs57TtGQoZdwVES9kDHdBbjvj8MviNitbYoKvGDeu83tc0aoyhc9dES6hdMTQsWwomOIudXsdgGmlC1pt_uA"/>
+                    <div class="space-y-8">
+                        <h3 class="text-4xl font-black text-primary dark:text-secondary">Beautiful Outdoor Spaces</h3>
+                        <p class="accessibility-text-xl font-medium">Enjoy your garden with professional maintenance and safe pathways.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Lawn mowing and edge trimming</li>
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Weeding and garden bed maintenance</li>
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Pruning shrubs and small trees</li>
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Sweeping paths and green waste removal</li>
+                            <li class="flex items-start gap-4 accessibility-text-lg font-bold"><span class="material-symbols-outlined text-secondary text-3xl">check_circle</span> Basic watering and plant health care</li>
+                        </ul>
+                        <button class="w-full bg-accent dark:bg-white text-white dark:text-accent text-2xl font-black py-6 rounded-2xl hover:bg-primary transition-colors flex items-center justify-center gap-4 shadow-lg uppercase" onclick="window.location.href='#contact-section'">
+                            Get Support Now <span class="material-symbols-outlined text-3xl">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<section class="bg-accent dark:bg-zinc-900 py-16 md:py-24 px-6 border-t-8 border-secondary" id="contact-section">
+    <div class="max-w-6xl mx-auto flex flex-col lg:flex-row gap-12 items-start">
+        <div class="lg:w-1/2 space-y-6 md:space-y-10 text-white lg:sticky lg:top-32">
+            <h2 class="text-4xl md:text-7xl font-display font-black leading-tight">Ready to Start?</h2>
+            <p class="text-lg md:text-2xl text-gray-300 font-medium">Our team is here to help you navigate your care journey.</p>
+        </div>
+
+        <div class="lg:w-1/2 w-full">
+            <div class="bg-white dark:bg-zinc-800 p-6 md:p-12 rounded-[30px] md:rounded-[40px] border-4 border-accent dark:border-white shadow-2xl">
+                <h3 class="text-3xl md:text-4xl font-black mb-8 dark:text-white uppercase text-center md:text-left">Inquiry Form</h3>
+                <form id="contactForm" class="space-y-6">
+                    <div>
+                        <label class="block text-xl font-bold mb-3 dark:text-white">Full Name</label>
+                        <input class="w-full text-xl p-5 rounded-xl border-4 border-zinc-200 dark:border-zinc-700 dark:bg-zinc-900" name="Full Name" required type="text" placeholder="Your name"/>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-xl font-bold mb-3 dark:text-white">Email Address</label>
+                        <input class="w-full text-xl p-5 rounded-xl border-4 border-zinc-200 dark:border-zinc-700 dark:bg-zinc-900" name="Email" required type="email" placeholder="example@email.com"/>
+                    </div>
+
+                    <div>
+                        <label class="block text-xl font-bold mb-3 dark:text-white">Phone Number</label>
+                        <input class="w-full text-xl p-5 rounded-xl border-4 border-zinc-200 dark:border-zinc-700 dark:bg-zinc-900 focus:border-secondary transition-all" name="Phone" required type="tel" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="Number only (0-9)"/>
+                    </div>
+
+                    <div>
+                        <label class="block text-xl font-bold mb-3 dark:text-white">Home Address</label>
+                        <input class="w-full text-xl p-5 rounded-xl border-4 border-zinc-200 dark:border-zinc-700 dark:bg-zinc-900" name="Address" required type="text" placeholder="Where do you live?"/>
+                    </div>
+
+                    <div>
+                        <label class="block text-xl font-bold mb-3 dark:text-white">Message</label>
+                        <textarea class="w-full text-xl p-5 rounded-xl border-4 border-zinc-200 dark:border-zinc-700 dark:bg-zinc-900" name="Message" rows="3" placeholder="How can we help?"></textarea>
+                    </div>
+
+                    <button id="form-btn" class="w-full bg-secondary text-accent text-3xl font-black py-8 rounded-2xl shadow-xl uppercase transition-all flex items-center justify-center gap-4" type="submit">
+                        Submit Request <span class="material-symbols-outlined text-4xl">send</span>
+                    </button>
+                    <div id="form-status" class="hidden text-center text-xl font-bold p-4 mt-4 rounded-xl"></div>
+                </form>
+
+                <script>
+                    const contactForm = document.getElementById('contactForm');
+                    const formStatus = document.getElementById('form-status');
+                    const formBtn = document.getElementById('form-btn');
+
+                    contactForm.addEventListener('submit', async function(e) {
+                        e.preventDefault();
+                        formBtn.disabled = true;
+                        formBtn.innerText = "Sending...";
+                        
+                        const data = new FormData(contactForm);
+
+                        // !!! ACTION REQUIRED: Get your real ID from Formspree.io !!!
+                        // Replace 'mqk....' with your actual 8-character Formspree ID
+                        fetch("https://formspree.io/f/mgolkjrk", { 
+                            method: "POST",
+                            body: data,
+                            headers: { 'Accept': 'application/json' }
+                        }).then(response => {
+                            if (response.ok) {
+                                formStatus.innerText = "Success! We will contact you shortly.";
+                                formStatus.className = "text-center text-xl font-bold p-4 mt-4 rounded-xl bg-primary text-white";
+                                formStatus.classList.remove('hidden');
+                                formBtn.classList.add('hidden');
+                                contactForm.reset();
+                            } else { throw new Error(); }
+                        }).catch(() => {
+                            formStatus.innerText = "Error! Check your Formspree ID.";
+                            formStatus.className = "text-center text-xl font-bold p-4 mt-4 rounded-xl bg-red-600 text-white";
+                            formStatus.classList.remove('hidden');
+                            formBtn.disabled = false;
+                            formBtn.innerText = "Submit Request";
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- <footer class="bg-white dark:bg-black py-16 text-center border-t-4 border-accent dark:border-white">
+    <p class="text-zinc-600 dark:text-zinc-400 text-xl font-bold">© 2026 gocare4u. All rights reserved.</p>
+</footer> -->
+
+
+<footer class="bg-white dark:bg-black py-16 px-6 md:px-12 border-t-4 border-accent dark:border-white">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+<div class="flex flex-col items-center md:items-start">
+<div class="flex flex-col mb-4">
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-black tracking-tight text-accent dark:text-white">gocare4u</span>
+<span class="text-secondary material-symbols-outlined text-4xl mb-[-10px]">eco</span>
+</div>
+<span class="text-primary dark:text-secondary font-black tracking-wide text-lg uppercase">Home Care Services</span>
+</div>
+<!-- <p class="text-zinc-600 dark:text-zinc-400 text-xl font-bold">© 2024 gocare4u. All rights reserved.</p>-->
+</div>
+
+<!--<div class="flex flex-wrap justify-center gap-10 text-xl font-black text-accent dark:text-white uppercase tracking-tighter">
+<a class="hover:text-primary underline decoration-2 underline-offset-4" href="#">Privacy</a>
+<a class="hover:text-primary underline decoration-2 underline-offset-4" href="#">Terms</a>
+<a class="hover:text-primary underline decoration-2 underline-offset-4" href="#">Accessibility</a>
+<a class="hover:text-primary underline decoration-2 underline-offset-4" href="#">Careers</a>
+</div>-->
+
+  <!-- Non-Clickable Legal Links with Hover Popups -->
+  <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; position: relative; font-weight: 600; font-size: 14px; letter-spacing: 0.5px;">
+    
+    <!-- Privacy -->
+    <div class="tooltip" style="position: relative; cursor: help; border-bottom: 1px solid #ccc; padding-bottom: 2px;">
+      PRIVACY
+      <span class="tooltiptext">Privacy: We keep your personal details safe and secure.</span>
+    </div>
+
+    <!-- Terms -->
+    <div class="tooltip" style="position: relative; cursor: help; border-bottom: 1px solid #ccc; padding-bottom: 2px;">
+      TERMS
+      <span class="tooltiptext">Terms: Our online information is for general guidance. By browsing, you agree to provide truthful details so we can safely assist you with your home care needs.</span>
+    </div>
+
+    <!-- Accessibility -->
+    <div class="tooltip" style="position: relative; cursor: help; border-bottom: 1px solid #ccc; padding-bottom: 2px;">
+      ACCESSIBILITY
+      <span class="tooltiptext">Accessibility: Our site is designed for everyone to use easily.</span>
+    </div>
+  </div>
+
+  <!-- Social Media Icons -->
+  <div style="display: flex; justify-content: center; gap: 25px; margin-bottom: 20px;">
+    <a href="https://facebook.com" target="_blank" style="text-decoration: none;">
+      <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook" style="width: 28px; height: 28px;">
+    </a>
+    <a href="https://instagram.com" target="_blank" style="text-decoration: none;">
+      <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" style="width: 28px; height: 28px;">
+    </a>
+  </div>
+  
+  <div style="font-size: 13px; color: #666; margin-top: 10px;">
+    &copy; 2024 gocare4u. Melbourne.
+  </div>
+
+  <style>
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 200px;
+      background-color: #4CAF50; /* Brand Green */
+      color: #fff;
+      text-align: center;
+      border-radius: 8px;
+      padding: 12px;
+      position: absolute;
+      z-index: 10;
+      bottom: 150%;
+      left: 50%;
+      margin-left: -100px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.4;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .tooltip .tooltiptext::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #4CAF50 transparent transparent transparent;
+    }
+
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+</div>
+
+
+<div class="flex gap-6">
+<!-- <div class="w-14 h-14 rounded-xl border-4 border-accent dark:border-white flex items-center justify-center">
+<img alt="GoCare4U Facebook - Disability Support Community" class="w-8 h-8 dark:invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtfb6zbmUk71dPfnV68Q15HCEbyIaMJCp9ILB6ZTn9SEgSkSWPoXGz1tqmBPxzacpgKEXoTJtkYPZs-C4HtvAX8DMNY6IBav2ugAoeQ7UvVKfzv2jh8yhVvmxYFUEq1QuIcQjHlAicNMJ_XLWbyoV00Qa03wkhAaRXl6bOztFCiG3ClzEFG_pnmBbzLtGydm4ScYEQvExdGduyHVdiarOgFvbI3Ll4YzUU83ku4FTdzCbihFGFUu_skvcsRwQ52gbSGuBMxeS4SBw"/>
+</div>
+<div class="w-14 h-14 rounded-xl border-4 border-accent dark:border-white flex items-center justify-center">
+<img alt="GoCare4U Facebook - Disability Support Community" class="w-8 h-8 dark:invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUu6hf_OQCrN6oM88YpWpF5cBKR1AAN3VJ6k7O6_m6SK3YDA2yROKrj1kc9m2UfpEkzRjjfNg8Qssp3pkB4lEUZPXo1HzMHr1x2azvQPMiRJiENryCdFlBjUSMMOyaqCokTxVNa7caSqmL4P-nmwp4YN0gBwtyyajs-sWpAf0Sc4qkZzYyI3C2yf9r2mgc-G_09ruVNrE9Wmrj4xWfut3DurvBM2MrCcelSDmOVlZoJxPS2XczvHXpKFwPKvJ4WGx3fN-NMc759bE"/>
+</div> -->
+
+</div> 
+</div>
+
+
+ <!-- <div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
+  <a href="https://wa.me/61420408938" target="_blank" style="text-decoration: none;">
+    <div style="background-color: #4CAF50; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: transform 0.2s;">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H5.17L4 17.17V4H20V16Z"/>
+      </svg>
+    </div>
+  </a>
+</div>
+
+<script>
+  // Add a simple hover effect
+  const btn = document.querySelector('div[style*="background-color"]');
+  btn.onmouseover = () => btn.style.transform = 'scale(1.1)';
+  btn.onmouseout = () => btn.style.transform = 'scale(1)';
+</script>   -->
+
+
+
+<!-- <div style="display: flex; justify-content: center; gap: 50px; align-items: flex-end; padding: 40px 20px 20px 20px; font-family: sans-serif;">
+
+  <div style="display: flex; flex-direction: column; align-items: center; position: relative;">
+    <div id="wa-msg" style="visibility: hidden; opacity: 0; background: #333; color: #fff; padding: 5px 12px; border-radius: 4px; font-size: 13px; white-space: nowrap; position: absolute; bottom: 75px; transition: 0.3s; z-index: 10;">
+      Chat on WhatsApp
+    </div>
+    <a href="https://wa.me/61420408938" target="_blank" style="text-decoration: none;">
+      <div id="wa-btn" style="background-color: #4CAF50; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.2s;">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H5.17L4 17.17V4H20V16Z"/></svg>
+      </div>
+    </a>
+  </div>
+
+  <div style="display: flex; flex-direction: column; align-items: center; position: relative;">
+    <div id="wc-msg" style="visibility: hidden; opacity: 0; background: #333; color: #fff; padding: 5px 12px; border-radius: 4px; font-size: 13px; white-space: nowrap; position: absolute; bottom: 75px; transition: 0.3s; z-index: 10;">
+      Copy WeChat ID: GoCare4U
+    </div>
+    <div id="wc-btn" onclick="copyWeChatID()" style="background-color: #07C160; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.2s; cursor: pointer;">
+      <svg width="35" height="35" viewBox="0 0 24 24" fill="white"><path d="M8.2 4.4c-3.4 0-6.2 2.3-6.2 5.1 0 1.6.9 3 2.3 4l-.6 1.8 2-1c.8.2 1.6.3 2.5.3.3 0 .6 0 .9-.1-.2-.6-.3-1.2-.3-1.9 0-3.1 3-5.6 6.8-5.6.3 0 .7 0 1 .1C15.4 5.6 12.1 4.4 8.2 4.4zm9.3 6.1c-2.9 0-5.3 2-5.3 4.4 0 2.4 2.4 4.4 5.3 4.4.7 0 1.3-.1 1.9-.3l1.5.8-.4-1.4c1.1-.8 1.8-1.9 1.8-3.1.1-2.4-2.4-4.8-5.3-4.8z"/></svg>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Hover Logic
+  function setupHover(btnId, msgId) {
+    const btn = document.getElementById(btnId);
+    const msg = document.getElementById(msgId);
+    btn.onmouseover = () => {
+      btn.style.transform = 'scale(1.1)';
+      msg.style.visibility = 'visible';
+      msg.style.opacity = '1';
+    };
+    btn.onmouseout = () => {
+      btn.style.transform = 'scale(1)';
+      msg.style.opacity = '0';
+      msg.style.visibility = 'hidden';
+    };
+  }
+
+  setupHover('wa-btn', 'wa-msg');
+  setupHover('wc-btn', 'wc-msg');
+
+  // WeChat Copy Logic
+  function copyWeChatID() {
+    const id = "GoCare4U";
+    navigator.clipboard.writeText(id).then(() => {
+      alert("WeChat ID 'GoCare4U' copied to clipboard!\nOpen WeChat and paste it in the search bar to find us.");
+    }).catch(err => {
+      alert("WeChat ID: GoCare4U"); // Fallback if clipboard fails
+    });
+  }
+</script>  -->
+
+
+<div style="position: fixed; bottom: 80px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 15px; align-items: flex-end; font-family: Arial, sans-serif;">
+
+  <div style="display: flex; align-items: center; position: relative;">
+    <div id="wa-msg" style="visibility: hidden; opacity: 0; background: #333; color: #fff; padding: 6px 12px; border-radius: 4px; font-size: 14px; white-space: nowrap; margin-right: 15px; transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+      Chat on WhatsApp
+    </div>
+    <a href="https://wa.me/61420408938" target="_blank" style="text-decoration: none;">
+      <div id="wa-btn" style="background-color: #4CAF50; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.2s; cursor: pointer;">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H5.17L4 17.17V4H20V16Z"/></svg>
+      </div>
+    </a>
+  </div>
+
+  <div style="display: flex; align-items: center; position: relative;">
+    
+    <div id="wc-qr" style="visibility: hidden; opacity: 0; background: #fff; padding: 12px; border-radius: 10px; box-shadow: 0 8px 25px rgba(0,0,0,0.3); margin-right: 15px; transition: 0.3s; position: absolute; right: 75px; bottom: -10px; text-align: center; width: 200px;">
+      <img src="https://thumbs2.imgbox.com/0f/77/IEzlz92G_t.jpg" alt="WeChat QR" 
+           style="width: 150px !important; height: 150px !important; display: block; border-radius: 4px; object-fit: contain; background-color: #fff;">
+      <div style="margin-top: 10px; border-top: 1px solid #eee; padding-top: 8px;">
+        <p style="margin: 0; font-size: 13px; color: #333; font-weight: bold;">Scan QR or Click to Copy ID</p>
+        <p style="margin: 2px 0 0 0; font-size: 14px; color: #07C160; font-weight: bold;">GoCare4U</p>
+      </div>
+    </div>
+
+    <div id="wc-btn" onclick="copyWeChatID()" style="background-color: #07C160; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.2s; cursor: pointer;">
+      <svg width="35" height="35" viewBox="0 0 24 24" fill="white"><path d="M8.2 4.4c-3.4 0-6.2 2.3-6.2 5.1 0 1.6.9 3 2.3 4l-.6 1.8 2-1c.8.2 1.6.3 2.5.3.3 0 .6 0 .9-.1-.2-.6-.3-1.2-.3-1.9 0-3.1 3-5.6 6.8-5.6.3 0 .7 0 1 .1C15.4 5.6 12.1 4.4 8.2 4.4zm9.3 6.1c-2.9 0-5.3 2-5.3 4.4 0 2.4 2.4 4.4 5.3 4.4.7 0 1.3-.1 1.9-.3l1.5.8-.4-1.4c1.1-.8 1.8-1.9 1.8-3.1.1-2.4-2.4-4.8-5.3-4.8z"/></svg>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // WhatsApp Interaction
+  const waBtn = document.getElementById('wa-btn');
+  const waMsg = document.getElementById('wa-msg');
+  waBtn.onmouseover = () => { waBtn.style.transform = 'scale(1.1)'; waMsg.style.visibility = 'visible'; waMsg.style.opacity = '1'; };
+  waBtn.onmouseout = () => { waBtn.style.transform = 'scale(1)'; waMsg.style.opacity = '0'; waMsg.style.visibility = 'hidden'; };
+
+  // WeChat Interaction (Square QR)
+  const wcBtn = document.getElementById('wc-btn');
+  const wcQr = document.getElementById('wc-qr');
+  wcBtn.onmouseover = () => { wcBtn.style.transform = 'scale(1.1)'; wcQr.style.visibility = 'visible'; wcQr.style.opacity = '1'; };
+  wcBtn.onmouseout = () => { wcBtn.style.transform = 'scale(1)'; wcQr.style.opacity = '0'; wcQr.style.visibility = 'hidden'; };
+
+  // Copy Logic
+  function copyWeChatID() {
+    const id = "GoCare4U";
+    navigator.clipboard.writeText(id).then(() => {
+      alert("WeChat ID 'GoCare4U' copied to clipboard!\nOpen WeChat and paste it into the search bar to find us.");
+    }).catch(err => {
+      alert("WeChat ID: GoCare4U");
+    });
+  }
+</script>
+
+
+</footer>
+</body>
+</html>
