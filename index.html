@@ -135,36 +135,39 @@
         }
         .tooltip:hover .tooltiptext { visibility: visible; opacity: 1; }
         
-/* Targeted fix for Firefox Mobile & Width Alignment */
+        
+/* Final Firefox Mobile Fix - Width & Size */
 @-moz-document url-prefix() {
   @media (max-width: 768px) {
-    /* Prevents the 'lengthy' width overflow by including border in calculation */
+    /* Prevents the 'lengthy' width overflow */
     .service-content, 
     .service-toggle-bar {
-      width: calc(100vw - 32px) !important; 
+      width: 90vw !important; /* Slightly narrower to guarantee no wobble */
+      max-width: 90vw !important;
       margin-left: auto !important;
       margin-right: auto !important;
-      box-sizing: border-box !important;
+      box-sizing: border-box !important; /* Includes border in width calculation */
     }
 
-    /* Makes the service text smaller in Firefox */
+    /* Smaller text specifically for Firefox mobile */
     .service-toggle-bar span.text-xl, 
     .service-toggle-bar span.md\:text-4xl {
       font-size: 1.1rem !important;
       line-height: 1.2 !important;
     }
 
-    /* Makes the service icons smaller in Firefox */
+    /* Smaller icons specifically for Firefox mobile */
     .service-toggle-bar .material-symbols-outlined {
-      font-size: 28px !important; /* Reduced from 5xl */
+      font-size: 28px !important;
     }
 
-    /* Adjusts internal padding for a tighter fit */
-    .service-toggle-bar {
-      padding: 1rem !important;
+    /* Smaller expand arrows */
+    .expand-icon {
+      font-size: 24px !important;
     }
     
-    .service-content {
+    /* Tighter padding to prevent overflow */
+    .service-toggle-bar {
       padding: 1rem !important;
     }
   }
