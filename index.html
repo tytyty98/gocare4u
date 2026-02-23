@@ -69,6 +69,26 @@
         }
         .tooltip:hover .tooltiptext { visibility: visible; opacity: 1; }
     </style>
+
+/* Targeted fix for Firefox Mobile */
+@-moz-document url-prefix() {
+  @media (max-width: 768px) {
+    .service-content {
+      width: 92vw !important; /* Forces it narrower than the screen */
+      margin-left: auto !important;
+      margin-right: auto !important;
+      padding-left: 1rem !important; /* Reduces internal padding */
+      padding-right: 1rem !important;
+    }
+    .service-toggle-bar {
+      width: 92vw !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+  }
+}
+    
+    
 </head>
 <body class="font-body bg-background-light dark:bg-background-dark text-accent dark:text-white transition-colors duration-300">
 
