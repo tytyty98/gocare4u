@@ -135,22 +135,28 @@
         }
         .tooltip:hover .tooltiptext { visibility: visible; opacity: 1; }
 
-/* Targeted fix for Firefox Mobile */
+/* Improved Targeted fix for Firefox & General Mobile Overflow */
 @-moz-document url-prefix() {
   @media (max-width: 768px) {
-    .service-content {
-      width: 92vw !important; /* Forces it narrower than the screen */
+    .service-content, 
+    .service-toggle-bar {
+      width: calc(100vw - 2rem) !important; /* Fixes Firefox width overflow */
+      max-width: 100% !important;
       margin-left: auto !important;
       margin-right: auto !important;
-      padding-left: 1rem !important; /* Reduces internal padding */
+      box-sizing: border-box !important; /* Ensures borders don't add to width */
+    }
+    .service-content {
+      padding-left: 1rem !important;
       padding-right: 1rem !important;
     }
-    .service-toggle-bar {
-      width: 92vw !important;
-      margin-left: auto !important;
-      margin-right: auto !important;
-    }
   }
+}
+
+/* Global fix for the Consultation section overflow */
+.service-toggle-bar {
+    max-width: 100%;
+    box-sizing: border-box; /* Standardizes width calculation across all browsers */
 }
 
         
