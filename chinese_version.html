@@ -56,60 +56,50 @@
         }
     </script>
     
-    <style type="text/tailwindcss">
-        .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48; }
-        .hero-gradient { background: linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%); }
-        .service-toggle-bar { @apply flex items-center justify-between w-full p-6 md:p-10 bg-white dark:bg-zinc-900 border-4 border-accent dark:border-white text-left transition-all hover:bg-zinc-50 dark:hover:bg-zinc-800 mb-4 rounded-2xl cursor-pointer; }
-        .service-content { @apply bg-white dark:bg-zinc-900 border-x-4 border-b-4 border-accent dark:border-white p-6 md:p-12 -mt-6 mb-8 rounded-b-2xl overflow-hidden; }
-        .accessibility-text-xl { @apply text-xl md:text-2xl leading-relaxed; }
-        .accessibility-text-lg { @apply text-lg md:text-xl leading-relaxed; }
-        .service-image { @apply w-full lg:w-[400px] aspect-square object-cover rounded-2xl border-4 border-accent dark:border-white shadow-xl transition-all duration-500 hover:brightness-110 mb-6 lg:mb-0; }
-        
-        .tooltip .tooltiptext {
-            visibility: hidden; width: 220px; background-color: #4CAF50; color: #fff;
-            text-align: center; border-radius: 8px; padding: 12px; position: absolute;
-            z-index: 10; bottom: 150%; left: 50%; margin-left: -110px; opacity: 0;
-            transition: opacity 0.3s; font-size: 14px; box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
-        }
-        .tooltip:hover .tooltiptext { visibility: visible; opacity: 1; }
-
-
-/* Final Firefox Mobile Fix - Width & Size */
-@-moz-document url-prefix() {
-  @media (max-width: 768px) {
-    /* Prevents the 'lengthy' width overflow */
-    .service-content, 
-    .service-toggle-bar {
-      width: 90vw !important; /* Slightly narrower to guarantee no wobble */
-      max-width: 90vw !important;
-      margin-left: auto !important;
-      margin-right: auto !important;
-      box-sizing: border-box !important; /* Includes border in width calculation */
-    }
-
-    /* Smaller text specifically for Firefox mobile */
-    .service-toggle-bar span.text-xl, 
-    .service-toggle-bar span.md\:text-4xl {
-      font-size: 1.1rem !important;
-      line-height: 1.2 !important;
-    }
-
-    /* Smaller icons specifically for Firefox mobile */
-    .service-toggle-bar .material-symbols-outlined {
-      font-size: 28px !important;
-    }
-
-    /* Smaller expand arrows */
-    .expand-icon {
-      font-size: 24px !important;
-    }
+<style type="text/tailwindcss">
+    .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48; }
+    .hero-gradient { background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%); }
     
-    /* Tighter padding to prevent overflow */
-    .service-toggle-bar {
-      padding: 1rem !important;
+    /* GLOBAL FIX: Applied to all browsers (Chrome & Firefox) */
+    .service-toggle-bar { 
+        @apply flex items-center justify-between bg-white dark:bg-zinc-900 border-4 border-accent dark:border-white text-left transition-all hover:bg-zinc-50 dark:hover:bg-zinc-800 mb-4 rounded-2xl cursor-pointer;
+        width: 100% !important;
+        box-sizing: border-box !important; /* Critical: forces border inside the width */
+        padding: 1rem md:p-10 !important;
     }
-  }
-}
+
+    .service-content { 
+        @apply bg-white dark:bg-zinc-900 border-x-4 border-b-4 border-accent dark:border-white -mt-6 mb-8 rounded-b-2xl overflow-hidden;
+        width: 100% !important;
+        box-sizing: border-box !important; /* Prevents horizontal overflow */
+        padding: 1rem md:p-12 !important;
+    }
+
+    /* Smaller text and icons for ALL Mobile Browsers (under 768px) */
+    @media (max-width: 768px) {
+        .service-toggle-bar span.text-xl, 
+        .service-toggle-bar span.md\:text-4xl {
+            font-size: 1.1rem !important; /* Shrinks text so it doesn't wrap oddly */
+            line-height: 1.2 !important;
+        }
+        .service-toggle-bar .material-symbols-outlined {
+            font-size: 28px !important;    /* Shrinks eco-icons */
+        }
+        .expand-icon {
+            font-size: 24px !important;    /* Shrinks arrows */
+        }
+        /* Forces the container to stay within screen limits */
+        .max-w-7xl {
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+            overflow-x: hidden !important;
+        }
+    }
+
+    .accessibility-text-xl { @apply text-lg md:text-2xl leading-relaxed; }
+    .accessibility-text-lg { @apply text-base md:text-xl leading-relaxed; }
+    .service-image { @apply w-full lg:w-[400px] aspect-square object-cover rounded-2xl border-4 border-accent dark:border-white shadow-xl transition-all duration-500 hover:brightness-110 mb-6 lg:mb-0; }
+</style>
         
     </style>
 
