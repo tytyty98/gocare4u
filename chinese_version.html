@@ -71,6 +71,45 @@
             transition: opacity 0.3s; font-size: 14px; box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
         }
         .tooltip:hover .tooltiptext { visibility: visible; opacity: 1; }
+
+
+/* Final Firefox Mobile Fix - Width & Size */
+@-moz-document url-prefix() {
+  @media (max-width: 768px) {
+    /* Prevents the 'lengthy' width overflow */
+    .service-content, 
+    .service-toggle-bar {
+      width: 90vw !important; /* Slightly narrower to guarantee no wobble */
+      max-width: 90vw !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      box-sizing: border-box !important; /* Includes border in width calculation */
+    }
+
+    /* Smaller text specifically for Firefox mobile */
+    .service-toggle-bar span.text-xl, 
+    .service-toggle-bar span.md\:text-4xl {
+      font-size: 1.1rem !important;
+      line-height: 1.2 !important;
+    }
+
+    /* Smaller icons specifically for Firefox mobile */
+    .service-toggle-bar .material-symbols-outlined {
+      font-size: 28px !important;
+    }
+
+    /* Smaller expand arrows */
+    .expand-icon {
+      font-size: 24px !important;
+    }
+    
+    /* Tighter padding to prevent overflow */
+    .service-toggle-bar {
+      padding: 1rem !important;
+    }
+  }
+}
+        
     </style>
 </head>
 <body class="font-body bg-background-light dark:bg-background-dark text-accent dark:text-white transition-colors duration-300">
