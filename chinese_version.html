@@ -101,6 +101,18 @@
     .accessibility-text-xl { @apply text-lg md:text-2xl leading-relaxed; }
     .accessibility-text-lg { @apply text-base md:text-xl leading-relaxed; }
     .service-image { @apply w-full lg:w-[400px] aspect-square object-cover rounded-2xl border-4 border-accent dark:border-white shadow-xl transition-all duration-500 hover:brightness-110 mb-6 lg:mb-0; }
+
+    /* Target Firefox only on mobile screens (below 768px) */
+   @supports (-moz-appearance:none) {
+   @media (max-width: 768px) {
+    .hero-p {
+      font-size: 16px !important; /* Smaller for Firefox */
+      padding: 12px !important;   /* Tighter box */
+      line-height: 1.4 !important;
+    }
+  }
+}
+    
 </style>
         
     
@@ -146,7 +158,9 @@
                 </div>
             </div>
             <h1 class="text-3xl md:text-8xl lg:text-9xl font-display font-black leading-tight drop-shadow-lg">您的家，<br/><span class="text-secondary italic">我们的重心</span></h1>
-            <p class="text-lg md:text-3xl font-medium bg-black/10 backdrop-blur-sm p-4 md:p-6 rounded-2xl border-l-8 border-secondary">在舒适中体验独立。通过政府资助的支持计划，我们以温暖和尊重的方式将专业的护理带入您阳光明媚的避风港。</p>
+            <!-- <p class="text-lg md:text-3xl font-medium bg-black/10 backdrop-blur-sm p-4 md:p-6 rounded-2xl border-l-8 border-secondary">-->
+            <p class="hero-p text-lg md:text-3xl font-medium bg-black/10 backdrop-blur-sm p-4 md:p-6 rounded-2xl border-l-8 border-secondary">
+                在舒适中体验独立。通过政府资助的支持计划，我们以温暖和尊重的方式将专业的护理带入您阳光明媚的避风港。</p>
         </div>
     </div>
 </section>
