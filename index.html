@@ -555,7 +555,7 @@
                 <div class="bg-white dark:bg-zinc-800 px-4 py-6 md:p-12 rounded-[20px] md:rounded-[40px] border-2 md:border-4 border-accent dark:border-white shadow-2xl">
       
                 <h3 class="text-2xl md:text-4xl font-black mb-4 dark:text-white uppercase text-center md:text-left">Inquiry Form</h3>        
-                <form id="contactForm" class="space-y-6">
+                <form id="contactForm" class="space-y-6" novalidate>
                     
                     <div>
                         <label class="block text-xl font-bold mb-3 dark:text-white">Full Name</label>
@@ -569,7 +569,8 @@
 
                     <div>
                         <label class="block text-xl font-bold mb-3 dark:text-white">Phone Number</label>
-                        <input class="w-full text-lg p-2 md:text-xl md:p-5 rounded-xl border-4 border-zinc-200 dark:border-zinc-700 dark:bg-zinc-900 focus:border-secondary transition-all" name="Phone" required type="tel" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="Number only (0-9)"/>
+                        <!-- <input class="w-full text-lg p-2 md:text-xl md:p-5 rounded-xl border-4 border-zinc-200 dark:border-zinc-700 dark:bg-zinc-900 focus:border-secondary transition-all" name="Phone" required type="tel" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="Number only (0-9)"/>-->
+                        <input class="w-full text-lg p-2 md:text-xl md:p-5 rounded-xl border-4 border-zinc-200 dark:border-zinc-700 dark:bg-zinc-900 focus:border-secondary transition-all" name="Phone" required type="text" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" placeholder="Number only (0-9)" />
                     </div>
 
                     <div>
@@ -604,39 +605,49 @@
                 </form>
 
                 <script>
-                    const contactForm = document.getElementById('contactForm');
-                    const formStatus = document.getElementById('form-status');
-                    const formBtn = document.getElementById('form-btn');
-
-                    contactForm.addEventListener('submit', async function(e) {
-                        e.preventDefault();
-                        formBtn.disabled = true;
-                        formBtn.innerText = "Sending...";
-                        
-                        const data = new FormData(contactForm);
-
-                        // !!! ACTION REQUIRED: Get your real ID from Formspree.io !!!
-                        // Replace 'mqk....' with your actual 8-character Formspree ID
-                        fetch("https://formspree.io/f/mgolkjrk", { 
-                            method: "POST",
-                            body: data,
-                            headers: { 'Accept': 'application/json' }
-                        }).then(response => {
-                            if (response.ok) {
-                                formStatus.innerText = "Success! We will contact you shortly.";
-                                formStatus.className = "text-center text-xl font-bold p-4 mt-4 rounded-xl bg-primary text-white";
-                                formStatus.classList.remove('hidden');
-                                formBtn.classList.add('hidden');
-                                contactForm.reset();
-                            } else { throw new Error(); }
-                        }).catch(() => {
-                            formStatus.innerText = "Error! Check your Formspree ID.";
-                            formStatus.className = "text-center text-xl font-bold p-4 mt-4 rounded-xl bg-red-600 text-white";
+                const contactForm = document.getElementById('contactForm');
+                const formStatus = document.getElementById('form-status');
+                const formBtn = document.getElementById('form-btn');
+                
+                contactForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    // Basic validation check for Firefox since we added 'novalidate'
+                    if (!contactForm.checkValidity()) {
+                        formStatus.innerText = "Please fill in all required fields correctly.";
+                        formStatus.className = "text-center text-xl font-bold p-4 mt-4 rounded-xl bg-red-600 text-white";
+                        formStatus.classList.remove('hidden');
+                        return; // Stop the script here
+                    }
+                
+                    formBtn.disabled = true;
+                    const originalBtnText = formBtn.innerHTML; // Save original HTML (including the icon)
+                    formBtn.innerText = "Sending...";
+                    
+                    const data = new FormData(contactForm);
+                
+                    fetch("https://formspree.io/f/mgolkjrk", { 
+                        method: "POST",
+                        body: data,
+                        headers: { 'Accept': 'application/json' }
+                    }).then(response => {
+                        if (response.ok) {
+                            formStatus.innerText = "Success! We will contact you shortly.";
+                            formStatus.className = "text-center text-xl font-bold p-4 mt-4 rounded-xl bg-primary text-white";
                             formStatus.classList.remove('hidden');
-                            formBtn.disabled = false;
-                            formBtn.innerText = "Submit Request";
-                        });
+                            formBtn.classList.add('hidden');
+                            contactForm.reset();
+                        } else { 
+                            throw new Error(); 
+                        }
+                    }).catch(() => {
+                        formStatus.innerText = "Error! Please try again later.";
+                        formStatus.className = "text-center text-xl font-bold p-4 mt-4 rounded-xl bg-red-600 text-white";
+                        formStatus.classList.remove('hidden');
+                        formBtn.disabled = false;
+                        formBtn.innerHTML = originalBtnText; // Restore original button with icon
                     });
+                });     
                 </script>
             </div>
         </div>
