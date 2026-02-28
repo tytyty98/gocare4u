@@ -612,12 +612,23 @@
                 contactForm.addEventListener('submit', async function(e) {
                     e.preventDefault();
                     
-                    // Basic validation check for Firefox since we added 'novalidate'
+                    // 1. Check if the form is valid
                     if (!contactForm.checkValidity()) {
-                        formStatus.innerText = "Please fill in all required fields correctly.";
+                        // Find the FIRST input that is empty/invalid
+                        const firstInvalidInput = contactForm.querySelector(':invalid');
+                        
+                        if (firstInvalidInput) {
+                            firstInvalidInput.focus(); // Jump to the empty field
+                            
+                            // Optional: Add a subtle red shake effect or border
+                            firstInvalidInput.classList.add('border-red-500');
+                            setTimeout(() => firstInvalidInput.classList.remove('border-red-500'), 2000);
+                        }
+                
+                        formStatus.innerText = "Please fill in all required fields.";
                         formStatus.className = "text-center text-xl font-bold p-4 mt-4 rounded-xl bg-red-600 text-white";
                         formStatus.classList.remove('hidden');
-                        return; // Stop the script here
+                        return; 
                     }
                 
                     formBtn.disabled = true;
@@ -753,81 +764,7 @@
 
 </div> 
 </div>
-
-
- <!-- <div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
-  <a href="https://wa.me/61420408938" target="_blank" style="text-decoration: none;">
-    <div style="background-color: #4CAF50; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: transform 0.2s;">
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H5.17L4 17.17V4H20V16Z"/>
-      </svg>
-    </div>
-  </a>
-</div>
-
-<script>
-  // Add a simple hover effect
-  const btn = document.querySelector('div[style*="background-color"]');
-  btn.onmouseover = () => btn.style.transform = 'scale(1.1)';
-  btn.onmouseout = () => btn.style.transform = 'scale(1)';
-</script>   -->
-
-
-
-<!-- <div style="display: flex; justify-content: center; gap: 50px; align-items: flex-end; padding: 40px 20px 20px 20px; font-family: sans-serif;">
-
-  <div style="display: flex; flex-direction: column; align-items: center; position: relative;">
-    <div id="wa-msg" style="visibility: hidden; opacity: 0; background: #333; color: #fff; padding: 5px 12px; border-radius: 4px; font-size: 13px; white-space: nowrap; position: absolute; bottom: 75px; transition: 0.3s; z-index: 10;">
-      Chat on WhatsApp
-    </div>
-    <a href="https://wa.me/61420408938" target="_blank" style="text-decoration: none;">
-      <div id="wa-btn" style="background-color: #4CAF50; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.2s;">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H5.17L4 17.17V4H20V16Z"/></svg>
-      </div>
-    </a>
-  </div>
-
-  <div style="display: flex; flex-direction: column; align-items: center; position: relative;">
-    <div id="wc-msg" style="visibility: hidden; opacity: 0; background: #333; color: #fff; padding: 5px 12px; border-radius: 4px; font-size: 13px; white-space: nowrap; position: absolute; bottom: 75px; transition: 0.3s; z-index: 10;">
-      Copy WeChat ID: GoCare4U
-    </div>
-    <div id="wc-btn" onclick="copyWeChatID()" style="background-color: #07C160; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.2s; cursor: pointer;">
-      <svg width="35" height="35" viewBox="0 0 24 24" fill="white"><path d="M8.2 4.4c-3.4 0-6.2 2.3-6.2 5.1 0 1.6.9 3 2.3 4l-.6 1.8 2-1c.8.2 1.6.3 2.5.3.3 0 .6 0 .9-.1-.2-.6-.3-1.2-.3-1.9 0-3.1 3-5.6 6.8-5.6.3 0 .7 0 1 .1C15.4 5.6 12.1 4.4 8.2 4.4zm9.3 6.1c-2.9 0-5.3 2-5.3 4.4 0 2.4 2.4 4.4 5.3 4.4.7 0 1.3-.1 1.9-.3l1.5.8-.4-1.4c1.1-.8 1.8-1.9 1.8-3.1.1-2.4-2.4-4.8-5.3-4.8z"/></svg>
-    </div>
-  </div>
-
-</div>
-
-<script>
-  // Hover Logic
-  function setupHover(btnId, msgId) {
-    const btn = document.getElementById(btnId);
-    const msg = document.getElementById(msgId);
-    btn.onmouseover = () => {
-      btn.style.transform = 'scale(1.1)';
-      msg.style.visibility = 'visible';
-      msg.style.opacity = '1';
-    };
-    btn.onmouseout = () => {
-      btn.style.transform = 'scale(1)';
-      msg.style.opacity = '0';
-      msg.style.visibility = 'hidden';
-    };
-  }
-
-  setupHover('wa-btn', 'wa-msg');
-  setupHover('wc-btn', 'wc-msg');
-
-  // WeChat Copy Logic
-  function copyWeChatID() {
-    const id = "GoCare4U";
-    navigator.clipboard.writeText(id).then(() => {
-      alert("WeChat ID 'GoCare4U' copied to clipboard!\nOpen WeChat and paste it in the search bar to find us.");
-    }).catch(err => {
-      alert("WeChat ID: GoCare4U"); // Fallback if clipboard fails
-    });
-  }
-</script>  -->
+ 
 
 <div class="chat-container">
 
